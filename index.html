@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Your Name | Portfolio</title>
+  <title>Md. Forhad Babu | Portfolio</title>
 
   <style>
     *{
@@ -11,129 +11,201 @@
       padding:0;
       box-sizing:border-box;
       scroll-behavior:smooth;
+      font-family: Arial, sans-serif;
     }
 
     body{
-      font-family: Arial, sans-serif;
-      background:#f4f7fb;
-      color:#222;
-      line-height:1.6;
+      background:#0a192f;
+      color:white;
+      line-height:1.7;
     }
 
     header{
-      background:#0f172a;
-      color:white;
-      padding:60px 20px;
-      text-align:center;
-    }
-
-    header h1{
-      font-size:48px;
-      margin-bottom:10px;
-    }
-
-    header p{
-      font-size:18px;
-      color:#cbd5e1;
+      width:100%;
+      height:100vh;
+      background:
+      linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),
+      url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1600&auto=format&fit=crop');
+      background-size:cover;
+      background-position:center;
+      display:flex;
+      flex-direction:column;
     }
 
     nav{
-      background:#1e293b;
-      padding:15px;
-      text-align:center;
-      position:sticky;
+      width:100%;
+      padding:20px 8%;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      background:rgba(0,0,0,0.3);
+      position:fixed;
       top:0;
+      z-index:1000;
+      backdrop-filter:blur(5px);
     }
 
-    nav a{
+    nav h2{
+      color:#64ffda;
+      font-size:28px;
+    }
+
+    nav ul{
+      display:flex;
+      list-style:none;
+      gap:25px;
+    }
+
+    nav ul li a{
       color:white;
       text-decoration:none;
-      margin:0 15px;
-      font-weight:bold;
       transition:0.3s;
+      font-size:15px;
     }
 
-    nav a:hover{
-      color:#38bdf8;
+    nav ul li a:hover{
+      color:#64ffda;
     }
 
-    section{
-      max-width:1000px;
-      margin:40px auto;
-      padding:40px;
-      background:white;
-      border-radius:12px;
-      box-shadow:0 2px 10px rgba(0,0,0,0.08);
-    }
-
-    section h2{
-      margin-bottom:20px;
-      color:#0f172a;
-      border-bottom:3px solid #38bdf8;
-      display:inline-block;
-      padding-bottom:5px;
-    }
-
-    .skills span{
-      display:inline-block;
-      background:#e0f2fe;
-      color:#0369a1;
-      padding:10px 15px;
-      margin:8px;
-      border-radius:20px;
-      font-size:14px;
-      font-weight:bold;
-    }
-
-    .card{
-      background:#f8fafc;
-      padding:20px;
-      border-left:5px solid #38bdf8;
-      margin-bottom:20px;
-      border-radius:8px;
-    }
-
-    footer{
+    .hero{
+      flex:1;
+      display:flex;
+      justify-content:center;
+      align-items:center;
       text-align:center;
-      padding:30px;
-      background:#0f172a;
-      color:white;
-      margin-top:40px;
+      padding:20px;
+    }
+
+    .hero-content img{
+      width:180px;
+      height:180px;
+      border-radius:50%;
+      border:4px solid #64ffda;
+      object-fit:cover;
+      margin-bottom:20px;
+    }
+
+    .hero-content h1{
+      font-size:55px;
+      margin-bottom:10px;
+    }
+
+    .hero-content h3{
+      color:#64ffda;
+      font-size:24px;
+      margin-bottom:15px;
+    }
+
+    .hero-content p{
+      max-width:700px;
+      margin:auto;
+      font-size:18px;
     }
 
     .btn{
       display:inline-block;
-      margin-top:20px;
-      background:#38bdf8;
-      color:white;
-      padding:12px 20px;
-      border-radius:8px;
+      margin-top:25px;
+      padding:12px 28px;
+      background:#64ffda;
+      color:#0a192f;
       text-decoration:none;
+      border-radius:5px;
       font-weight:bold;
       transition:0.3s;
     }
 
     .btn:hover{
-      background:#0284c7;
+      background:white;
     }
 
-    ul{
-      margin-left:20px;
+    section{
+      padding:90px 10%;
+    }
+
+    .section-title{
+      font-size:36px;
+      color:#64ffda;
+      margin-bottom:30px;
+      border-left:5px solid #64ffda;
+      padding-left:15px;
+    }
+
+    .card{
+      background:#112240;
+      padding:25px;
+      border-radius:10px;
+      margin-bottom:20px;
+      transition:0.3s;
+    }
+
+    .card:hover{
+      transform:translateY(-5px);
+    }
+
+    .skills{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+      gap:20px;
+    }
+
+    .skill-box{
+      background:#112240;
+      padding:20px;
+      border-radius:10px;
+      text-align:center;
+      font-weight:bold;
+    }
+
+    .social-links{
+      display:flex;
+      flex-wrap:wrap;
+      gap:15px;
+      margin-top:20px;
+    }
+
+    .social-links a{
+      text-decoration:none;
+      color:white;
+      background:#112240;
+      padding:12px 18px;
+      border-radius:5px;
+      transition:0.3s;
+    }
+
+    .social-links a:hover{
+      background:#64ffda;
+      color:#0a192f;
+    }
+
+    footer{
+      text-align:center;
+      padding:25px;
+      background:#08111f;
+      margin-top:40px;
     }
 
     @media(max-width:768px){
-      header h1{
-        font-size:34px;
+
+      nav{
+        flex-direction:column;
+        gap:15px;
       }
 
-      nav a{
-        display:block;
-        margin:10px 0;
+      nav ul{
+        flex-wrap:wrap;
+        justify-content:center;
+      }
+
+      .hero-content h1{
+        font-size:38px;
+      }
+
+      .hero-content h3{
+        font-size:20px;
       }
 
       section{
-        margin:20px;
-        padding:25px;
+        padding:80px 7%;
       }
     }
   </style>
@@ -141,174 +213,191 @@
 
 <body>
 
-  <!-- HERO SECTION -->
-
   <header>
-    <h1>Your Name</h1>
-    <p>Student | Research Enthusiast | Future Researcher</p>
 
-    <a href="#contact" class="btn">Contact Me</a>
+    <nav>
+      <h2>Forhad</h2>
+
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#publications">Publications</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#certificates">Certificates</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="hero">
+
+      <div class="hero-content">
+
+        <!-- Your Photo -->
+        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=800&auto=format&fit=crop" alt="Profile Photo">
+
+        <h1>Md. Forhad Babu</h1>
+
+        <h3>Research Enthusiast | Renewable Energy Research</h3>
+
+        <p>
+          Applied Chemistry and Chemical Engineering,<br>
+          University of Rajshahi
+        </p>
+
+        <!-- CV Button -->
+        <a href="cv.pdf" class="btn" target="_blank">Download CV</a>
+
+      </div>
+
+    </div>
+
   </header>
 
-  <!-- NAVIGATION -->
-
-  <nav>
-    <a href="#about">About</a>
-    <a href="#education">Education</a>
-    <a href="#research">Research</a>
-    <a href="#projects">Projects</a>
-    <a href="#presentations">Presentations</a>
-    <a href="#skills">Skills</a>
-    <a href="#organizations">Organizations</a>
-    <a href="#certificates">Certificates</a>
-    <a href="#contact">Contact</a>
-  </nav>
-
-  <!-- ABOUT -->
-
+  <!-- About -->
   <section id="about">
-    <h2>About Me</h2>
 
-    <p>
-      Write a short introduction about yourself here.
-      Mention your university, department, interests,
-      future goals, and research passion.
-    </p>
-  </section>
-
-  <!-- EDUCATION -->
-
-  <section id="education">
-    <h2>Education</h2>
+    <h2 class="section-title">About Me</h2>
 
     <div class="card">
-      <h3>B.Sc. in Applied Chemistry & Chemical Engineering</h3>
-      <p>University Name</p>
-      <p>Year: 2023 - Present</p>
+
+      <p>
+        I am a passionate research enthusiast currently studying Applied Chemistry and Chemical Engineering at the University of Rajshahi. My research interests focus on renewable energy, density functional theory (DFT), and materials science. I am highly interested in scientific innovation, sustainable energy technologies, and advanced computational research.
+      </p>
+
     </div>
 
-    <div class="card">
-      <h3>Higher Secondary Certificate (HSC)</h3>
-      <p>College Name</p>
-      <p>Year: XXXX</p>
-    </div>
   </section>
 
-  <!-- RESEARCH -->
-
+  <!-- Research -->
   <section id="research">
-    <h2>Research Interests</h2>
 
-    <ul>
-      <li>Computational Chemistry</li>
-      <li>Nanomaterials</li>
-      <li>Corrosion Engineering</li>
-      <li>Catalysis</li>
-      <li>Environmental Chemistry</li>
-    </ul>
-  </section>
-
-  <!-- PROJECTS -->
-
-  <section id="projects">
-    <h2>Projects</h2>
+    <h2 class="section-title">Research Interests</h2>
 
     <div class="card">
-      <h3>Project Title 1</h3>
-      <p>
-        Short description about your project.
-      </p>
+      <h3>Density Functional Theory (DFT)</h3>
     </div>
 
     <div class="card">
-      <h3>Project Title 2</h3>
-      <p>
-        Short description about another project.
-      </p>
+      <h3>Renewable Energy Research</h3>
     </div>
-  </section>
-
-  <!-- PRESENTATIONS -->
-
-  <section id="presentations">
-    <h2>Presentations</h2>
 
     <div class="card">
-      <h3>Research Presentation Title</h3>
-      <p>Conference / Seminar Name</p>
-      <p>Year: 2026</p>
+      <h3>Materials Science</h3>
     </div>
+
   </section>
 
-  <!-- SKILLS -->
-
+  <!-- Skills -->
   <section id="skills">
-    <h2>Skills</h2>
+
+    <h2 class="section-title">Skills</h2>
 
     <div class="skills">
-      <span>Gaussian</span>
-      <span>Canva</span>
-      <span>Microsoft Office</span>
-      <span>Research Writing</span>
-      <span>Presentation Design</span>
-      <span>Basic Python</span>
+
+      <div class="skill-box">Research & Scientific Writing</div>
+
+      <div class="skill-box">DFT Simulation</div>
+
+      <div class="skill-box">Canva Design</div>
+
+      <div class="skill-box">Presentation Skills</div>
+
+      <div class="skill-box">Microsoft Office</div>
+
+      <div class="skill-box">Team Leadership</div>
+
     </div>
+
   </section>
 
-  <!-- ORGANIZATIONS -->
+  <!-- Publications -->
+  <section id="publications">
 
-  <section id="organizations">
-    <h2>Organizations & Leadership</h2>
+    <h2 class="section-title">Publications</h2>
 
     <div class="card">
-      <h3>SWAJON</h3>
-      <p>Treasurer</p>
+      <h3>Research Papers</h3>
+      <br>
+      <p>
+        • Add your research papers here.
+      </p>
     </div>
 
     <div class="card">
-      <h3>RUHERF</h3>
-      <p>IT & Media Secretary</p>
+      <h3>Conference Papers</h3>
+      <br>
+      <p>
+        • Add your conference papers here.
+      </p>
     </div>
 
-    <div class="card">
-      <h3>BD Clean</h3>
-      <p>Active Member</p>
-    </div>
   </section>
 
-  <!-- CERTIFICATES -->
+  <!-- Experience -->
+  <section id="experience">
 
+    <h2 class="section-title">Experience</h2>
+
+    <div class="card">
+      <p>
+        • Treasurer at SWAJON <br>
+        • IT & Media Secretary at RUHERF <br>
+        • Active Member at BD Clean <br>
+        • Member of Rajshahi University Research Society
+      </p>
+    </div>
+
+  </section>
+
+  <!-- Certificates -->
   <section id="certificates">
-    <h2>Certificates</h2>
 
-    <ul>
-      <li>Research Workshop Certificate</li>
-      <li>Presentation Competition Certificate</li>
-      <li>Leadership Program Certificate</li>
-    </ul>
+    <h2 class="section-title">Certificates</h2>
+
+    <div class="card">
+      <p>
+        • Add your certificates here.
+      </p>
+    </div>
+
   </section>
 
-  <!-- CONTACT -->
-
+  <!-- Contact -->
   <section id="contact">
-    <h2>Contact</h2>
 
-    <p>Email: yourmail@example.com</p>
-    <p>Phone: +8801XXXXXXXXX</p>
-    <p>LinkedIn: linkedin.com/in/yourname</p>
-    <p>ResearchGate: researchgate.net/profile/yourname</p>
+    <h2 class="section-title">Contact</h2>
 
-    <a href="mailto:yourmail@example.com" class="btn">
-      Send Email
-    </a>
+    <div class="card">
+
+      <p>Email: yourmail@gmail.com</p>
+
+      <br>
+
+      <p>University of Rajshahi, Bangladesh</p>
+
+      <div class="social-links">
+
+        <a href="#">Facebook</a>
+
+        <a href="#">LinkedIn</a>
+
+        <a href="#">ResearchGate</a>
+
+        <a href="#">Google Scholar</a>
+
+      </div>
+
+    </div>
+
   </section>
-
-  <!-- FOOTER -->
 
   <footer>
+
     <p>
-      © 2026 Your Name | All Rights Reserved
+      © 2026 Md. Forhad Babu | All Rights Reserved
     </p>
+
   </footer>
 
 </body>
