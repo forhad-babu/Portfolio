@@ -478,7 +478,7 @@ section:nth-child(even) { background:var(--surface); }
 }
 .pub-note { font-size:14px; color:var(--muted); line-height:1.7; }
 
-/* ── CERTIFICATES ── */
+/* ── CERTIFICATES ── */ 
 .cert-grid {
   display:grid; grid-template-columns:repeat(3,1fr);
   gap:14px;
@@ -645,32 +645,28 @@ footer {
 <!-- ── HERO ── -->
 <div id="hero">
   <!-- Cover Photo -->
-  <div class="cover-section">
-    <img id="coverImg" class="cover-img" src="" alt="Cover Photo">
-    <div class="cover-default-pattern"></div>
-    <div class="cover-bottom-fade"></div>
+<div class="cover-section">
+  <img id="coverImg" class="cover-img"
+    src="1626620547094-1-scaled.jpeg"
+    alt="Cover Photo">
 
-    <!-- Cover upload button -->
-    <label class="cover-upload-btn">
-      📷 Change Cover Photo
-      <input type="file" accept="image/*" onchange="setCover(this)">
-    </label>
+  <div class="cover-default-pattern"></div>
+  <div class="cover-bottom-fade"></div>
+</div>
+
+<!-- Profile row -->
+<div class="hero-info-row">
+
+  <!-- Profile photo -->
+  <div class="profile-photo-wrap">
+
+    <img id="profilePhoto" class="profile-photo"
+      src="Untitled Design - 2.png"
+      alt="Md. Forhad Babu">
+
   </div>
 
-  <!-- Profile row -->
-  <div class="hero-info-row">
-    <!-- Profile photo -->
-    <div class="profile-photo-wrap">
-      <img id="profilePhoto" class="profile-photo"
-        src="Forhad.png" alt="Md. Forhad Babu"
-        onerror="this.style.display='none';document.getElementById('profileInit').style.display='flex';">
-      <div id="profileInit" class="profile-photo-init" style="display:none;">FB</div>
-      <label class="profile-upload-btn" title="Change profile photo">
-        ✏️
-        <input type="file" accept="image/*" onchange="setProfile(this)">
-      </label>
-    </div>
-
+</div>
 
     <!-- Name & details -->
     <div class="hero-text">
