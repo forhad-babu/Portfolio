@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Md. Forhad Babu — Research Enthusiast</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=JetBrains+Mono:wght@300;400;500&family=Nunito+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
 *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
 
@@ -53,18 +54,20 @@ nav {
   position:fixed; top:0; left:0; right:0; z-index:300;
   height:60px; padding:0 48px;
   display:flex; justify-content:space-between; align-items:center;
+  background: rgba(26,53,88,0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 2px 24px rgba(26,53,88,0.22);
   transition:all 0.4s ease;
 }
 nav.scrolled {
-  background:rgba(242,246,251,0.96);
-  backdrop-filter:blur(16px);
-  box-shadow:0 1px 24px rgba(26,53,88,0.10);
-  border-bottom:1px solid var(--border);
+  background: rgba(26,53,88,0.97);
+  box-shadow: 0 2px 32px rgba(26,53,88,0.32);
 }
 .nav-logo {
   font-family:'Cormorant Garamond',serif;
   font-size:21px; font-weight:700;
-  color:var(--navy); text-decoration:none; letter-spacing:0.03em;
+  color:#fff; text-decoration:none; letter-spacing:0.03em;
   flex-shrink:0;
 }
 .nav-logo span { color:var(--teal); }
@@ -73,7 +76,7 @@ nav.scrolled {
 .nav-links li a {
   font-family:'JetBrains Mono',monospace;
   font-size:10px; letter-spacing:0.10em; text-transform:uppercase;
-  color:var(--muted); text-decoration:none;
+  color:rgba(255,255,255,0.65); text-decoration:none;
   padding:5px 12px; border-radius:4px;
   transition:all 0.22s ease;
   display:flex; flex-direction:column; align-items:center; gap:2px;
@@ -85,7 +88,7 @@ nav.scrolled {
   height:1.5px; background:var(--teal); border-radius:1px;
   transform:scaleX(0); transition:transform 0.22s ease;
 }
-.nav-links li a:hover, .nav-links li a.active { color:var(--navy); }
+.nav-links li a:hover, .nav-links li a.active { color:#fff; }
 .nav-links li a:hover::after, .nav-links li a.active::after { transform:scaleX(1); }
 
 /* hamburger */
@@ -95,7 +98,7 @@ nav.scrolled {
 }
 .nav-toggle span {
   display:block; width:22px; height:1.5px;
-  background:var(--muted); transition:all 0.3s ease;
+  background:rgba(255,255,255,0.7); transition:all 0.3s ease;
 }
 .nav-toggle.open span:nth-child(1){ transform:translateY(6.5px) rotate(45deg); background:var(--teal); }
 .nav-toggle.open span:nth-child(2){ opacity:0; }
@@ -103,28 +106,27 @@ nav.scrolled {
 
 .mobile-menu {
   display:none; position:fixed; top:60px; left:0; right:0; z-index:299;
-  background:rgba(242,246,251,0.98); backdrop-filter:blur(16px);
-  border-bottom:1px solid var(--border);
+  background:rgba(26,53,88,0.98); backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(255,255,255,0.1);
   flex-direction:column; padding:10px 0;
-  box-shadow:0 8px 32px rgba(26,53,88,0.12);
+  box-shadow:0 8px 32px rgba(26,53,88,0.32);
 }
 .mobile-menu.open { display:flex; }
 .mobile-menu a {
   font-family:'JetBrains Mono',monospace;
   font-size:11.5px; letter-spacing:0.12em; text-transform:uppercase;
-  color:var(--muted); text-decoration:none;
-  padding:13px 36px; border-bottom:1px solid var(--border);
+  color:rgba(255,255,255,0.65); text-decoration:none;
+  padding:13px 36px; border-bottom:1px solid rgba(255,255,255,0.08);
   display:flex; align-items:center; gap:14px;
   transition:color 0.22s, background 0.22s;
 }
 .mobile-menu a .mn { color:var(--teal); font-size:9px; }
-.mobile-menu a:hover { color:var(--navy); background:rgba(13,158,126,0.05); }
+.mobile-menu a:hover { color:#fff; background:rgba(13,158,126,0.10); }
 .mobile-menu a:last-child { border-bottom:none; }
 
 /* ── HERO ── */
 #hero { position:relative; overflow:hidden; }
 
-/* Cover photo */
 .cover-section {
   position:relative; width:100%;
   height:340px; overflow:hidden;
@@ -133,10 +135,12 @@ nav.scrolled {
   width:100%; height:100%; object-fit:cover;
   position:absolute; inset:0;
 }
-.cover-bottom-fade {
-  position:absolute; bottom:0; left:0; right:0;
-  height:120px;
-  background:linear-gradient(to bottom, transparent, var(--bg));
+.cover-overlay {
+  position:absolute; inset:0;
+  background: linear-gradient(to bottom,
+    rgba(26,53,88,0.18) 0%,
+    rgba(26,53,88,0.10) 50%,
+    var(--bg) 100%);
 }
 
 /* Hero info row */
@@ -148,9 +152,7 @@ nav.scrolled {
 }
 
 /* Profile photo */
-.profile-photo-wrap {
-  position:relative; flex-shrink:0;
-}
+.profile-photo-wrap { position:relative; flex-shrink:0; }
 .profile-photo {
   width:150px; height:150px; border-radius:50%;
   border:5px solid var(--surface);
@@ -168,21 +170,23 @@ nav.scrolled {
   box-shadow:var(--shadow2);
 }
 
-.hero-text {
-  padding-bottom:16px;
-  flex:1;
-}
+.hero-text { padding-bottom:16px; flex:1; }
+
 .hero-badge {
   font-family:'JetBrains Mono',monospace;
   font-size:9.5px; letter-spacing:0.2em; text-transform:uppercase;
-  color:var(--teal);
+  color:#fff;
+  background: linear-gradient(135deg, var(--teal), #0fa888);
   display:inline-flex; align-items:center; gap:8px;
   margin-bottom:10px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  box-shadow: 0 2px 12px rgba(13,158,126,0.35);
   opacity:0; animation:fadeUp 0.7s 0.2s forwards;
 }
 .badge-dot {
   width:6px; height:6px; border-radius:50%;
-  background:var(--teal); box-shadow:0 0 6px var(--teal);
+  background:#fff; box-shadow:0 0 6px rgba(255,255,255,0.8);
   animation:blink 2.2s infinite;
 }
 @keyframes blink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.35;transform:scale(0.65)}}
@@ -214,15 +218,12 @@ nav.scrolled {
 /* Stats strip */
 .hero-stats-strip {
   margin:32px 60px 0;
-  display:grid; grid-template-columns:repeat(4,1fr);
+  display:grid; grid-template-columns:repeat(5,1fr);
   gap:1px; background:var(--border);
   border:1px solid var(--border);
   box-shadow:var(--shadow);
 }
-.hstat {
-  background:var(--surface); padding:20px 22px;
-  transition:background 0.25s;
-}
+.hstat { background:var(--surface); padding:20px 22px; transition:background 0.25s; }
 .hstat:hover { background:var(--bg2); }
 .hstat-num {
   font-family:'Cormorant Garamond',serif;
@@ -238,29 +239,23 @@ nav.scrolled {
 /* Buttons */
 .btn-primary {
   background:var(--teal); color:white;
-  padding:11px 26px;
-  font-family:'JetBrains Mono',monospace;
+  padding:11px 26px; font-family:'JetBrains Mono',monospace;
   font-size:10.5px; letter-spacing:0.12em; text-transform:uppercase;
-  text-decoration:none; font-weight:500;
-  border-radius:5px;
+  text-decoration:none; font-weight:500; border-radius:5px;
   transition:all 0.28s ease;
   box-shadow:0 3px 16px rgba(13,158,126,0.28);
 }
 .btn-primary:hover { background:var(--navy); box-shadow:0 3px 16px rgba(26,53,88,0.25); }
 .btn-ghost {
   color:var(--navy); border:1.5px solid var(--border);
-  padding:10px 22px;
-  font-family:'JetBrains Mono',monospace;
+  padding:10px 22px; font-family:'JetBrains Mono',monospace;
   font-size:10.5px; letter-spacing:0.12em; text-transform:uppercase;
-  text-decoration:none; border-radius:5px;
-  transition:all 0.28s ease;
+  text-decoration:none; border-radius:5px; transition:all 0.28s ease;
 }
 .btn-ghost:hover { border-color:var(--teal); color:var(--teal); background:var(--teal-lt); }
 
 /* ── SECTIONS ── */
 section { padding:96px 60px; }
-section:nth-child(odd) { background:var(--bg); }
-section:nth-child(even) { background:var(--surface); }
 #about { background:var(--bg); }
 #research { background:var(--surface); }
 #experience { background:var(--bg); }
@@ -326,11 +321,19 @@ section:nth-child(even) { background:var(--surface); }
 }
 .info-item-val { font-size:13.5px; color:var(--navy); line-height:1.4; }
 
+/* Skills section label highlight */
 .skills-row-label {
   font-family:'JetBrains Mono',monospace;
-  font-size:9px; letter-spacing:0.14em; text-transform:uppercase;
-  color:var(--muted); margin-bottom:9px; margin-top:18px;
+  font-size:9px; letter-spacing:0.18em; text-transform:uppercase;
+  color:#fff;
+  background: linear-gradient(135deg, var(--navy), #24487a);
+  display: inline-block;
+  padding: 5px 14px;
+  border-radius: 4px;
+  margin-bottom:12px; margin-top:20px;
+  box-shadow: 0 2px 8px rgba(26,53,88,0.18);
 }
+
 .skill-tags { display:flex; flex-wrap:wrap; gap:8px; }
 .skill-tag {
   font-family:'JetBrains Mono',monospace;
@@ -343,20 +346,16 @@ section:nth-child(even) { background:var(--surface); }
 .skill-tag:hover { color:var(--teal); border-color:var(--teal); background:var(--teal-lt); }
 
 /* ── RESEARCH ── */
-.research-grid {
-  display:grid; grid-template-columns:repeat(3,1fr);
-  gap:16px;
-}
+.research-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
 .research-card {
   background:var(--bg); border:1px solid var(--border);
   border-radius:10px; padding:28px 24px;
   position:relative; overflow:hidden;
-  transition:all 0.3s ease;
-  box-shadow:var(--shadow);
+  transition:all 0.3s ease; box-shadow:var(--shadow);
 }
 .research-card::before {
   content:''; position:absolute; top:0; left:0;
-  width:3px; height:0%; background:var(--teal); border-radius:0 0 3px 0;
+  width:3px; height:0%; background:var(--teal);
   transition:height 0.35s ease;
 }
 .research-card:hover { transform:translateY(-4px); box-shadow:var(--shadow2); border-color:rgba(13,158,126,0.35); }
@@ -375,7 +374,6 @@ section:nth-child(even) { background:var(--surface); }
   content:''; position:absolute; left:0; top:8px; bottom:0;
   width:1.5px;
   background:linear-gradient(to bottom, var(--teal), var(--border));
-  border-radius:1px;
 }
 .exp-item {
   position:relative; margin-bottom:32px;
@@ -399,7 +397,15 @@ section:nth-child(even) { background:var(--surface); }
 .exp-org {
   font-family:'JetBrains Mono',monospace;
   font-size:10px; letter-spacing:0.11em; text-transform:uppercase;
-  color:var(--teal); margin-bottom:9px;
+  color:var(--teal); margin-bottom:5px;
+}
+.exp-duration {
+  font-family:'JetBrains Mono',monospace;
+  font-size:9.5px; letter-spacing:0.08em;
+  color:var(--muted);
+  background:var(--bg2); border:1px solid var(--border);
+  display:inline-block; padding:3px 10px; border-radius:3px;
+  margin-bottom:10px;
 }
 .exp-desc { font-size:14px; line-height:1.75; color:var(--muted); }
 
@@ -411,7 +417,7 @@ section:nth-child(even) { background:var(--surface); }
 }
 .pub-card::after {
   content:''; position:absolute; bottom:0; left:0;
-  width:0%; height:2.5px; background:var(--teal); border-radius:0 0 0 10px;
+  width:0%; height:2.5px; background:var(--teal);
   transition:width 0.4s ease;
 }
 .pub-card:hover { box-shadow:var(--shadow2); border-color:rgba(13,158,126,0.3); transform:translateY(-2px); }
@@ -422,7 +428,7 @@ section:nth-child(even) { background:var(--surface); }
   color:var(--teal); margin-bottom:9px;
   display:flex; align-items:center; gap:10px;
 }
-.pub-type::after { content:''; flex:0 0 28px; height:1px; background:var(--teal); border-radius:1px; }
+.pub-type::after { content:''; flex:0 0 28px; height:1px; background:var(--teal); }
 .pub-title {
   font-family:'Cormorant Garamond',serif;
   font-size:21px; font-weight:600; color:var(--navy); margin-bottom:8px;
@@ -430,10 +436,7 @@ section:nth-child(even) { background:var(--surface); }
 .pub-note { font-size:14px; color:var(--muted); line-height:1.7; }
 
 /* ── CERTIFICATES ── */
-.cert-grid {
-  display:grid; grid-template-columns:repeat(3,1fr);
-  gap:14px;
-}
+.cert-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
 .cert-card {
   background:var(--surface); border:1px solid var(--border);
   border-radius:8px; padding:24px 22px;
@@ -451,13 +454,8 @@ section:nth-child(even) { background:var(--surface); }
 .cert-placeholder.add:hover { color:var(--teal); border-color:var(--teal); background:var(--teal-lt); }
 
 /* ── CONTACT ── */
-#contact {
-  display:grid; grid-template-columns:1fr 1fr;
-  gap:72px; align-items:start;
-}
-.contact-intro p {
-  font-size:15.5px; line-height:1.85; color:var(--muted); margin:22px 0 36px;
-}
+#contact { display:grid; grid-template-columns:1fr 1fr; gap:72px; align-items:start; }
+.contact-intro p { font-size:15.5px; line-height:1.85; color:var(--muted); margin:22px 0 36px; }
 .contact-links { display:flex; flex-direction:column; gap:0; }
 .contact-link {
   display:flex; align-items:center; gap:16px;
@@ -465,14 +463,21 @@ section:nth-child(even) { background:var(--surface); }
   text-decoration:none; transition:all 0.25s;
 }
 .contact-icon {
-  width:40px; height:40px; border:1.5px solid var(--border);
-  border-radius:8px;
+  width:42px; height:42px; border:1.5px solid var(--border);
+  border-radius:10px;
   display:flex; align-items:center; justify-content:center;
-  font-size:14px; flex-shrink:0;
+  font-size:17px; flex-shrink:0;
   transition:all 0.25s; color:var(--muted);
   background:var(--bg);
 }
 .contact-link:hover .contact-icon { background:var(--teal); border-color:var(--teal); color:white; }
+
+/* Per-icon brand colors on hover */
+.contact-link.email:hover .contact-icon   { background:#e74c3c; border-color:#e74c3c; }
+.contact-link.linkedin:hover .contact-icon{ background:#0077b5; border-color:#0077b5; }
+.contact-link.rgate:hover .contact-icon   { background:#40ba21; border-color:#40ba21; }
+.contact-link.whatsapp:hover .contact-icon{ background:#25d366; border-color:#25d366; }
+
 .contact-text {
   font-family:'JetBrains Mono',monospace;
   font-size:12px; color:var(--muted); letter-spacing:0.05em;
@@ -525,7 +530,6 @@ footer {
 
 /* ── ANIMATIONS ── */
 @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:none} }
-@keyframes fadeIn { from{opacity:0} to{opacity:1} }
 .reveal { opacity:0; transform:translateY(32px); transition:opacity 0.65s ease, transform 0.65s ease; }
 .reveal.visible { opacity:1; transform:none; }
 .reveal-stagger>* { opacity:0; transform:translateY(20px); transition:opacity 0.5s ease, transform 0.5s ease; }
@@ -539,7 +543,6 @@ footer {
 /* ── RESPONSIVE ── */
 @media(max-width:960px){
   nav{padding:0 20px;}
-  nav.scrolled{padding:0 20px;}
   .nav-links{display:none;}
   .nav-toggle{display:flex;}
   section{padding:72px 24px;}
@@ -550,14 +553,14 @@ footer {
   footer{flex-direction:column;gap:12px;text-align:center;padding:24px;}
   .form-row{grid-template-columns:1fr;}
   .hero-info-row{padding:0 24px;flex-direction:column;align-items:flex-start;margin-top:-60px;gap:16px;}
-  .hero-stats-strip{margin:24px 24px 0;grid-template-columns:repeat(2,1fr);}
+  .hero-stats-strip{margin:24px 24px 0;grid-template-columns:repeat(3,1fr);}
   .profile-photo,.profile-photo-init{width:120px;height:120px;}
   .profile-photo-init{font-size:36px;}
 }
 @media(max-width:600px){
   .research-grid{grid-template-columns:1fr;}
   .cert-grid{grid-template-columns:1fr;}
-  .hero-stats-strip{grid-template-columns:1fr 1fr;}
+  .hero-stats-strip{grid-template-columns:repeat(2,1fr);}
   .cover-section{height:220px;}
 }
 </style>
@@ -583,7 +586,6 @@ footer {
   </button>
 </nav>
 
-<!-- Mobile menu -->
 <div class="mobile-menu" id="mobileMenu">
   <a href="#about"        onclick="closeMenu()"><span class="mn">01</span> About</a>
   <a href="#research"     onclick="closeMenu()"><span class="mn">02</span> Research</a>
@@ -596,26 +598,21 @@ footer {
 <!-- ── HERO ── -->
 <div id="hero">
 
-  <!-- Cover Photo — GitHub থেকে সরাসরি লোড হবে -->
+  <!-- Cover Photo -->
   <div class="cover-section">
-    <img class="cover-img"
-         src="16266620547094-1-scaled.jpeg"
-         alt="Cover Photo">
-    <div class="cover-bottom-fade"></div>
+    <img class="cover-img" src="1626620547094-1-scaled.jpeg" alt="Cover Photo">
+    <div class="cover-overlay"></div>
   </div>
 
   <!-- Profile row -->
   <div class="hero-info-row">
-    <!-- Profile photo — GitHub থেকে সরাসরি লোড হবে -->
     <div class="profile-photo-wrap">
       <img id="profilePhoto" class="profile-photo"
-        src="Untitled Design - 2.png"
-        alt="Md. Forhad Babu"
+        src="Untitled Design - 2.png" alt="Md. Forhad Babu"
         onerror="this.style.display='none';document.getElementById('profileInit').style.display='flex';">
       <div id="profileInit" class="profile-photo-init" style="display:none;">FB</div>
     </div>
 
-    <!-- Name & details -->
     <div class="hero-text">
       <div class="hero-badge"><div class="badge-dot"></div>Open to Research Opportunities</div>
       <h1 class="hero-name">Md. <em>Forhad Babu</em></h1>
@@ -631,23 +628,27 @@ footer {
     </div>
   </div>
 
-  <!-- Stats strip -->
+  <!-- Stats strip: CGPA, Research Papers, Conference Papers, Research Areas, Leadership Roles -->
   <div class="hero-stats-strip reveal">
     <div class="hstat">
       <div class="hstat-num">3.65</div>
       <div class="hstat-label">CGPA / 4.00</div>
     </div>
     <div class="hstat">
-      <div class="hstat-num">5+</div>
-      <div class="hstat-label">Research Areas</div>
+      <div class="hstat-num">0</div>
+      <div class="hstat-label">Research Papers</div>
+    </div>
+    <div class="hstat">
+      <div class="hstat-num">0</div>
+      <div class="hstat-label">Conference Papers</div>
     </div>
     <div class="hstat">
       <div class="hstat-num">5</div>
-      <div class="hstat-label">Leadership Roles</div>
+      <div class="hstat-label">Research Areas</div>
     </div>
     <div class="hstat">
-      <div class="hstat-num">DFT</div>
-      <div class="hstat-label">Gaussian / GaussView</div>
+      <div class="hstat-num">6</div>
+      <div class="hstat-label">Leadership Roles</div>
     </div>
   </div>
 
@@ -681,7 +682,7 @@ footer {
       <div class="info-item"><div class="info-item-label">Year</div><div class="info-item-val">Final Year (4th)</div></div>
       <div class="info-item"><div class="info-item-label">University</div><div class="info-item-val">University of Rajshahi</div></div>
       <div class="info-item"><div class="info-item-label">Location</div><div class="info-item-val">Rajshahi-6205, Bangladesh</div></div>
-      <div class="info-item"><div class="info-item-label">Software</div><div class="info-item-val">Gaussian, GaussView, OriginPro</div></div>
+      <div class="info-item"><div class="info-item-label">Software</div><div class="info-item-val">Gaussian, Material Studio, CAPS1D</div></div>
       <div class="info-item"><div class="info-item-label">Email</div><div class="info-item-val">forhad.babu.ru@gmail.com</div></div>
     </div>
 
@@ -690,10 +691,13 @@ footer {
       <div class="skill-tags reveal-stagger">
         <span class="skill-tag">DFT Simulation</span>
         <span class="skill-tag">Gaussian</span>
+        <span class="skill-tag">Material Studio</span>
         <span class="skill-tag">GaussView</span>
+        <span class="skill-tag">CAPS1D</span>
+        <span class="skill-tag">MATLAB</span>
         <span class="skill-tag">OriginPro</span>
+        <span class="skill-tag">HTML</span>
         <span class="skill-tag">Scientific Writing</span>
-        <span class="skill-tag">Bioinformatics</span>
         <span class="skill-tag">MS Office</span>
         <span class="skill-tag">Canva Design</span>
       </div>
@@ -722,17 +726,17 @@ footer {
     </div>
     <div class="research-card">
       <div class="research-icon">⚡</div>
-      <h3 class="research-title">Battery & Energy Storage</h3>
+      <h3 class="research-title">Battery &amp; Energy Storage</h3>
       <p class="research-desc">Investigating electrode materials and electrolyte systems for high-performance lithium-ion and beyond-lithium energy storage technologies.</p>
     </div>
     <div class="research-card">
       <div class="research-icon">🔬</div>
-      <h3 class="research-title">Materials Science & Nanomaterials</h3>
+      <h3 class="research-title">Materials Science &amp; Nanomaterials</h3>
       <p class="research-desc">Synthesis and characterization of nanostructured materials for energy, catalysis, and biomedical applications.</p>
     </div>
     <div class="research-card">
       <div class="research-icon">⚗️</div>
-      <h3 class="research-title">Electrochemistry & Corrosion</h3>
+      <h3 class="research-title">Electrochemistry &amp; Corrosion</h3>
       <p class="research-desc">Electrochemical analysis, corrosion inhibition, and surface characterization for materials protection and sensor development.</p>
     </div>
     <div class="research-card">
@@ -740,46 +744,66 @@ footer {
       <h3 class="research-title">Computational Chemistry (DFT)</h3>
       <p class="research-desc">Density functional theory calculations using Gaussian and GaussView to model molecular properties, reaction mechanisms, and electronic structures.</p>
     </div>
-    <div class="research-card">
-      <div class="research-icon">🧬</div>
-      <h3 class="research-title">Bioinformatics</h3>
-      <p class="research-desc">Computational approaches in biological data analysis, molecular docking, and drug discovery supporting interdisciplinary research.</p>
-    </div>
   </div>
 </section>
 
 <!-- ── EXPERIENCE ── -->
 <section id="experience">
   <div class="reveal">
-    <div class="section-label">Roles & Activities</div>
+    <div class="section-label">Roles &amp; Activities</div>
     <h2 class="section-title">Experience &amp; <em>Leadership</em></h2>
   </div>
   <div class="exp-timeline">
+
+    <div class="exp-item">
+      <div class="exp-role">President</div>
+      <div class="exp-org">University Students Association of Sariakandi Sonatola (USASS)</div>
+      <div class="exp-duration">📅 [Start Date] — Running</div>
+      <p class="exp-desc">Currently serving as President, providing strategic leadership and guiding organizational activities to support students from Sariakandi and Sonatola regions at the university level.</p>
+    </div>
+
     <div class="exp-item">
       <div class="exp-role">Vice President</div>
       <div class="exp-org">RUHERF — Rajshahi University</div>
-      <p class="exp-desc">Leading strategic direction and operations of the organization, coordinating with faculty, managing events, and driving research-awareness initiatives across campus.</p>
+      <div class="exp-duration">📅 [Start Date] — [End Date]</div>
+      <p class="exp-desc">Led strategic direction and operations of the organization, coordinating with faculty, managing events, and driving research-awareness initiatives across campus.</p>
     </div>
+
     <div class="exp-item">
       <div class="exp-role">IT &amp; Media Secretary</div>
       <div class="exp-org">RUHERF — Rajshahi University</div>
+      <div class="exp-duration">📅 [Start Date] — [End Date]</div>
       <p class="exp-desc">Managed digital communications, social media outreach, event media coverage, and technical infrastructure to amplify the organization's research mission.</p>
     </div>
+
+    <div class="exp-item">
+      <div class="exp-role">Office Secretary</div>
+      <div class="exp-org">Rajshahi University Students Association of Sariakandi (RUSAS)</div>
+      <div class="exp-duration">📅 [Start Date] — [End Date]</div>
+      <p class="exp-desc">Managed official correspondence, documentation, and administrative coordination for the association's activities and programs.</p>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-role">IT Secretary</div>
+      <div class="exp-org">Bogura Zilla Students Welfare Association</div>
+      <div class="exp-duration">📅 [Start Date] — [End Date]</div>
+      <p class="exp-desc">Handled digital presence, IT infrastructure, and media-related tasks to strengthen the association's communications and outreach.</p>
+    </div>
+
     <div class="exp-item">
       <div class="exp-role">Treasurer</div>
       <div class="exp-org">SWAJON</div>
+      <div class="exp-duration">📅 [Start Date] — [End Date]</div>
       <p class="exp-desc">Oversaw financial planning, budget management, and transparent fund reporting for organizational activities and programs.</p>
     </div>
+
     <div class="exp-item">
       <div class="exp-role">Active Member</div>
       <div class="exp-org">BD Clean</div>
+      <div class="exp-duration">📅 [Start Date] — [End Date]</div>
       <p class="exp-desc">Participated in environmental cleanliness and sustainability drives, contributing to community outreach and eco-awareness campaigns.</p>
     </div>
-    <div class="exp-item">
-      <div class="exp-role">Member</div>
-      <div class="exp-org">Rajshahi University Research Society</div>
-      <p class="exp-desc">Engaged in interdisciplinary research discussions, seminars, and collaborative projects to foster a culture of academic inquiry.</p>
-    </div>
+
   </div>
 </section>
 
@@ -827,20 +851,20 @@ footer {
     <p>I am always open to discussing research collaborations, graduate opportunities,
       or simply connecting with fellow scientists. Feel free to reach out.</p>
     <div class="contact-links">
-      <a href="mailto:forhad.babu.ru@gmail.com" class="contact-link">
-        <div class="contact-icon">✉</div>
+      <a href="mailto:forhad.babu.ru@gmail.com" class="contact-link email">
+        <div class="contact-icon"><i class="fas fa-envelope"></i></div>
         <span class="contact-text">forhad.babu.ru@gmail.com</span>
       </a>
-      <a href="https://www.linkedin.com/in/forhad-babu-ru" class="contact-link" target="_blank">
-        <div class="contact-icon">in</div>
+      <a href="https://www.linkedin.com/in/forhad-babu-ru" class="contact-link linkedin" target="_blank">
+        <div class="contact-icon"><i class="fab fa-linkedin-in"></i></div>
         <span class="contact-text">linkedin.com/in/forhad-babu-ru</span>
       </a>
-      <a href="https://www.researchgate.net/profile/Md-Forhad-Babu" class="contact-link" target="_blank">
-        <div class="contact-icon">RG</div>
+      <a href="https://www.researchgate.net/profile/Md-Forhad-Babu" class="contact-link rgate" target="_blank">
+        <div class="contact-icon"><i class="fab fa-researchgate"></i></div>
         <span class="contact-text">ResearchGate Profile</span>
       </a>
-      <a href="https://wa.me/8801701570907" class="contact-link" target="_blank">
-        <div class="contact-icon">📱</div>
+      <a href="https://wa.me/8801701570907" class="contact-link whatsapp" target="_blank">
+        <div class="contact-icon"><i class="fab fa-whatsapp"></i></div>
         <span class="contact-text">+880 1701 570907 (WhatsApp)</span>
       </a>
     </div>
@@ -873,7 +897,7 @@ footer {
 </section>
 
 <footer>
-  <span class="footer-copy">© 2026 Md. Forhad Babu · Applied Chemistry & Chemical Engineering, University of Rajshahi</span>
+  <span class="footer-copy">© 2026 Md. Forhad Babu · Applied Chemistry &amp; Chemical Engineering, University of Rajshahi</span>
   <a href="#hero" class="footer-top">Back to Top ↑</a>
 </footer>
 
@@ -942,44 +966,25 @@ async function handleSend(e){
   const btn    = document.getElementById('sendBtn');
   const status = document.getElementById('formStatus');
   const data   = new FormData(form);
-
   btn.textContent = 'Sending...';
-  btn.disabled = true;
-  btn.style.opacity = '0.7';
-
+  btn.disabled = true; btn.style.opacity = '0.7';
   try {
     const res = await fetch('https://formspree.io/f/xojbrbed', {
-      method: 'POST',
-      body: data,
-      headers: { 'Accept': 'application/json' }
+      method:'POST', body:data, headers:{'Accept':'application/json'}
     });
     if(res.ok){
       btn.textContent = 'Message Sent ✓';
-      btn.style.background = 'var(--teal)';
-      btn.style.color = 'white';
-      btn.style.opacity = '1';
+      btn.style.background = 'var(--teal)'; btn.style.color = 'white'; btn.style.opacity = '1';
       status.textContent = '✓ Your message has been sent! Forhad will get back to you soon.';
-      status.style.color = 'var(--teal)';
-      status.style.display = 'block';
+      status.style.color = 'var(--teal)'; status.style.display = 'block';
       form.reset();
-      setTimeout(()=>{
-        btn.textContent='Send Message';
-        btn.style.background=''; btn.style.color='';
-        btn.disabled=false;
-        status.style.display='none';
-      }, 4000);
-    } else {
-      throw new Error('Server error');
-    }
+      setTimeout(()=>{ btn.textContent='Send Message'; btn.style.background=''; btn.style.color=''; btn.disabled=false; status.style.display='none'; },4000);
+    } else { throw new Error('Server error'); }
   } catch(err){
     btn.textContent = 'Failed — Try Again';
-    btn.style.background = '#e74c3c';
-    btn.style.color = 'white';
-    btn.style.opacity = '1';
-    btn.disabled = false;
+    btn.style.background = '#e74c3c'; btn.style.color = 'white'; btn.style.opacity = '1'; btn.disabled = false;
     status.textContent = '✗ Something went wrong. Please email directly: forhad.babu.ru@gmail.com';
-    status.style.color = '#e74c3c';
-    status.style.display = 'block';
+    status.style.color = '#e74c3c'; status.style.display = 'block';
     setTimeout(()=>{ btn.textContent='Send Message'; btn.style.background=''; btn.style.color=''; status.style.display='none'; },5000);
   }
 }
