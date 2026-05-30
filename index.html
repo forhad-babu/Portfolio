@@ -14,13 +14,11 @@
   --surface:  #ffffff;
   --border:   #d0dcea;
   --accent:   #1a6bbf;
-  --accent2:  #0fa d8a;
   --teal:     #0d9e7e;
   --teal-lt:  #e0f5f0;
   --navy:     #1a3558;
   --muted:    #6b82a0;
   --text:     #2d3f55;
-  --cream:    #1a3558;
   --shadow:   0 2px 20px rgba(26,53,88,0.10);
   --shadow2:  0 8px 40px rgba(26,53,88,0.13);
 }
@@ -130,52 +128,16 @@ nav.scrolled {
 .cover-section {
   position:relative; width:100%;
   height:340px; overflow:hidden;
-  background:linear-gradient(135deg, #c9dff5 0%, #b8d4ef 40%, #a8c9e8 100%);
 }
 .cover-img {
   width:100%; height:100%; object-fit:cover;
-  display:none; position:absolute; inset:0;
-}
-.cover-default-pattern {
   position:absolute; inset:0;
-  background:
-    linear-gradient(135deg, #d6e8f7 0%, #b8d0ee 50%, #9dc3e6 100%);
-  overflow:hidden;
-}
-.cover-default-pattern::before {
-  content:'';
-  position:absolute; inset:0;
-  background-image:
-    linear-gradient(rgba(255,255,255,0.25) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.25) 1px, transparent 1px);
-  background-size:48px 48px;
-}
-.cover-default-pattern::after {
-  content:'';
-  position:absolute; inset:0;
-  background:
-    radial-gradient(ellipse 60% 80% at 80% 40%, rgba(255,255,255,0.35) 0%, transparent 60%),
-    radial-gradient(ellipse 40% 60% at 20% 70%, rgba(13,158,126,0.18) 0%, transparent 55%);
 }
 .cover-bottom-fade {
   position:absolute; bottom:0; left:0; right:0;
   height:120px;
   background:linear-gradient(to bottom, transparent, var(--bg));
 }
-
-/* Cover upload */
-.cover-upload-btn {
-  position:absolute; top:16px; right:20px; z-index:10;
-  background:rgba(255,255,255,0.85); border:1px solid var(--border);
-  color:var(--muted); padding:8px 15px;
-  font-family:'JetBrains Mono',monospace; font-size:10px;
-  letter-spacing:0.1em; text-transform:uppercase;
-  cursor:none; transition:all 0.3s; backdrop-filter:blur(8px);
-  border-radius:6px;
-  display:flex; align-items:center; gap:7px;
-}
-.cover-upload-btn:hover { color:var(--teal); border-color:var(--teal); background:white; }
-.cover-upload-btn input { display:none; }
 
 /* Hero info row */
 .hero-info-row {
@@ -205,17 +167,6 @@ nav.scrolled {
   font-size:44px; font-weight:700; color:white;
   box-shadow:var(--shadow2);
 }
-.profile-upload-btn {
-  position:absolute; bottom:4px; right:4px;
-  width:34px; height:34px; border-radius:50%;
-  background:var(--teal); border:3px solid var(--surface);
-  display:flex; align-items:center; justify-content:center;
-  cursor:none; transition:background 0.3s;
-  font-size:14px; color:white;
-  box-shadow:0 2px 8px rgba(13,158,126,0.4);
-}
-.profile-upload-btn:hover { background:var(--navy); }
-.profile-upload-btn input { display:none; }
 
 .hero-text {
   padding-bottom:16px;
@@ -478,7 +429,7 @@ section:nth-child(even) { background:var(--surface); }
 }
 .pub-note { font-size:14px; color:var(--muted); line-height:1.7; }
 
-/* ── CERTIFICATES ── */ 
+/* ── CERTIFICATES ── */
 .cert-grid {
   display:grid; grid-template-columns:repeat(3,1fr);
   gap:14px;
@@ -644,29 +595,25 @@ footer {
 
 <!-- ── HERO ── -->
 <div id="hero">
-  <!-- Cover Photo -->
-<div class="cover-section">
-  <img id="coverImg" class="cover-img"
-    src="1626620547094-1-scaled.jpeg"
-    alt="Cover Photo">
 
-  <div class="cover-default-pattern"></div>
-  <div class="cover-bottom-fade"></div>
-</div>
-
-<!-- Profile row -->
-<div class="hero-info-row">
-
-  <!-- Profile photo -->
-  <div class="profile-photo-wrap">
-
-    <img id="profilePhoto" class="profile-photo"
-      src="Untitled Design - 2.png"
-      alt="Md. Forhad Babu">
-
+  <!-- Cover Photo — GitHub থেকে সরাসরি লোড হবে -->
+  <div class="cover-section">
+    <img class="cover-img"
+         src="1626620547094-1-scaled.jpeg"
+         alt="Cover Photo">
+    <div class="cover-bottom-fade"></div>
   </div>
 
-</div>
+  <!-- Profile row -->
+  <div class="hero-info-row">
+    <!-- Profile photo — GitHub থেকে সরাসরি লোড হবে -->
+    <div class="profile-photo-wrap">
+      <img id="profilePhoto" class="profile-photo"
+        src="Untitled Design - 2.png"
+        alt="Md. Forhad Babu"
+        onerror="this.style.display='none';document.getElementById('profileInit').style.display='flex';">
+      <div id="profileInit" class="profile-photo-init" style="display:none;">FB</div>
+    </div>
 
     <!-- Name & details -->
     <div class="hero-text">
@@ -954,7 +901,6 @@ const nav = document.getElementById('nav');
 const sections = ['about','research','experience','publications','certificates','contact'];
 window.addEventListener('scroll', ()=>{
   nav.classList.toggle('scrolled', window.scrollY > 80);
-  // active nav link
   const scrollY = window.scrollY + 120;
   let current = '';
   sections.forEach(id=>{
@@ -988,28 +934,6 @@ const cgpaObs = new IntersectionObserver(entries=>{
 },{threshold:0.5});
 const cgpaEl = document.getElementById('cgpaFill');
 if(cgpaEl) cgpaObs.observe(cgpaEl.parentElement);
-
-// ── Profile photo upload ──
-function setProfile(input){
-  if(!input.files||!input.files[0]) return;
-  const url = URL.createObjectURL(input.files[0]);
-  const photo = document.getElementById('profilePhoto');
-  const init  = document.getElementById('profileInit');
-  photo.src = url;
-  photo.style.display = 'block';
-  init.style.display  = 'none';
-}
-
-// ── Cover photo upload ──
-function setCover(input){
-  if(!input.files||!input.files[0]) return;
-  const url = URL.createObjectURL(input.files[0]);
-  const img = document.getElementById('coverImg');
-  const pat = document.querySelector('.cover-default-pattern');
-  img.src = url;
-  img.style.display = 'block';
-  pat.style.display = 'none';
-}
 
 // ── Form send (Formspree) ──
 async function handleSend(e){
