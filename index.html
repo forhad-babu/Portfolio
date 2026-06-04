@@ -280,11 +280,33 @@ section { padding:96px 60px; }
 .section-title em { font-style:italic; color:var(--teal); }
 
 /* ── ABOUT ── */
-#about { display:grid; grid-template-columns:1.1fr 0.9fr; gap:72px; align-items:start; }
+#about {
+  display:grid; grid-template-columns:1.1fr 0.9fr; gap:72px; align-items:start;
+  position:relative;
+}
+#about::before {
+  content:'';
+  position:absolute; inset:0;
+  background: radial-gradient(ellipse at 30% 40%, rgba(13,158,126,0.055) 0%, transparent 65%),
+              radial-gradient(ellipse at 80% 80%, rgba(26,107,191,0.04) 0%, transparent 60%);
+  pointer-events:none; z-index:0;
+}
+#about > * { position:relative; z-index:1; }
 
 .about-text p { font-size:15.5px; line-height:1.9; color:var(--muted); margin-bottom:16px; }
 .about-text p strong { color:var(--navy); font-weight:600; }
 .about-text p em { color:var(--teal); font-style:italic; }
+
+.about-highlight-box {
+  background: linear-gradient(135deg, rgba(13,158,126,0.07) 0%, rgba(26,107,191,0.06) 100%);
+  border-left: 3px solid var(--teal);
+  border-radius: 0 8px 8px 0;
+  padding: 18px 22px;
+  margin: 22px 0;
+  font-size:15px; line-height:1.85; color:var(--navy);
+  font-style: italic;
+  box-shadow: 0 2px 12px rgba(13,158,126,0.09);
+}
 
 .cgpa-bar {
   margin-top:28px; background:var(--bg2);
@@ -453,6 +475,83 @@ section { padding:96px 60px; }
 .cert-placeholder.add { color:var(--muted); border-color:var(--muted); cursor:pointer; }
 .cert-placeholder.add:hover { color:var(--teal); border-color:var(--teal); background:var(--teal-lt); }
 
+/* ── PHOTO GALLERY ── */
+#gallery { background: var(--bg); }
+.gallery-grid {
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:18px;
+  margin-top:8px;
+}
+.gallery-item {
+  position:relative; overflow:hidden;
+  border-radius:10px;
+  border:1px solid var(--border);
+  background:var(--surface);
+  box-shadow:var(--shadow);
+  transition:all 0.32s ease;
+  cursor:pointer;
+}
+.gallery-item:hover { transform:translateY(-5px); box-shadow:var(--shadow2); border-color:rgba(13,158,126,0.4); }
+.gallery-item img {
+  width:100%; aspect-ratio:4/3;
+  object-fit:cover; display:block;
+  transition:transform 0.42s ease;
+}
+.gallery-item:hover img { transform:scale(1.05); }
+.gallery-caption {
+  padding:14px 16px 16px;
+  border-top:1px solid var(--border);
+}
+.gallery-caption-event {
+  font-family:'JetBrains Mono',monospace;
+  font-size:9px; letter-spacing:0.16em; text-transform:uppercase;
+  color:var(--teal); margin-bottom:5px;
+}
+.gallery-caption-desc {
+  font-size:13px; line-height:1.65; color:var(--muted);
+}
+
+/* Lightbox */
+.gallery-lightbox {
+  display:none; position:fixed; inset:0; z-index:900;
+  background:rgba(26,53,88,0.93); backdrop-filter:blur(8px);
+  align-items:center; justify-content:center;
+  padding:32px;
+}
+.gallery-lightbox.open { display:flex; }
+.lightbox-inner {
+  max-width:780px; width:100%;
+  background:var(--surface); border-radius:14px;
+  overflow:hidden; box-shadow:0 24px 80px rgba(26,53,88,0.45);
+  animation: lbIn 0.3s ease;
+}
+@keyframes lbIn { from{opacity:0;transform:scale(0.94)} to{opacity:1;transform:scale(1)} }
+.lightbox-inner img { width:100%; max-height:55vh; object-fit:cover; display:block; }
+.lightbox-info { padding:20px 26px 24px; }
+.lightbox-event {
+  font-family:'JetBrains Mono',monospace;
+  font-size:9px; letter-spacing:0.18em; text-transform:uppercase;
+  color:var(--teal); margin-bottom:7px;
+}
+.lightbox-desc { font-size:15px; line-height:1.75; color:var(--navy); }
+.lightbox-close {
+  position:absolute; top:20px; right:24px;
+  background:rgba(255,255,255,0.12); border:none;
+  color:#fff; font-size:20px; width:38px; height:38px;
+  border-radius:50%; cursor:pointer; display:flex;
+  align-items:center; justify-content:center;
+  transition:background 0.2s;
+}
+.lightbox-close:hover { background:rgba(255,255,255,0.25); }
+
+@media(max-width:768px){
+  .gallery-grid{ grid-template-columns:repeat(2,1fr); }
+}
+@media(max-width:480px){
+  .gallery-grid{ grid-template-columns:1fr; }
+}
+
 /* ── CONTACT ── */
 #contact { display:grid; grid-template-columns:1fr 1fr; gap:72px; align-items:start; }
 .contact-intro p { font-size:15.5px; line-height:1.85; color:var(--muted); margin:22px 0 36px; }
@@ -579,7 +678,8 @@ footer {
     <li><a href="#experience"   data-section="experience"   ><span class="nn">03</span>Experience</a></li>
     <li><a href="#publications" data-section="publications" ><span class="nn">04</span>Publications</a></li>
     <li><a href="#certificates" data-section="certificates" ><span class="nn">05</span>Certificates</a></li>
-    <li><a href="#contact"      data-section="contact"      ><span class="nn">06</span>Contact</a></li>
+    <li><a href="#gallery"      data-section="gallery"      ><span class="nn">06</span>Gallery</a></li>
+    <li><a href="#contact"      data-section="contact"      ><span class="nn">07</span>Contact</a></li>
   </ul>
   <button class="nav-toggle" id="navToggle" onclick="toggleMenu()">
     <span></span><span></span><span></span>
@@ -592,7 +692,8 @@ footer {
   <a href="#experience"   onclick="closeMenu()"><span class="mn">03</span> Experience</a>
   <a href="#publications" onclick="closeMenu()"><span class="mn">04</span> Publications</a>
   <a href="#certificates" onclick="closeMenu()"><span class="mn">05</span> Certificates</a>
-  <a href="#contact"      onclick="closeMenu()"><span class="mn">06</span> Contact</a>
+  <a href="#gallery"      onclick="closeMenu()"><span class="mn">06</span> Gallery</a>
+  <a href="#contact"      onclick="closeMenu()"><span class="mn">07</span> Contact</a>
 </div>
 
 <!-- ── HERO ── -->
@@ -658,17 +759,34 @@ footer {
 <section id="about">
   <div class="reveal">
     <div class="section-label">About Me</div>
-    <h2 class="section-title">Passionate about<br><em>science & discovery</em></h2>
+    <h2 class="section-title">Aspiring Researcher,<br><em>seeking opportunity</em></h2>
     <div class="about-text">
       <p>I am <strong>Md. Forhad Babu</strong>, a final-year undergraduate student of
-        <em>Applied Chemistry and Chemical Engineering</em> at the University of Rajshahi,
-        Bangladesh, with a CGPA of <strong>3.65 out of 4.00</strong>.</p>
-      <p>My research interests lie at the frontier of <strong>renewable energy, electrochemistry,
-        nanotechnology,</strong> and <strong>computational chemistry</strong>. I am passionate about
-        exploring sustainable solutions in the energy sector through advanced chemical and
-        computational approaches including DFT simulations.</p>
-      <p>Beyond academia, I am an active leader and team player — serving in multiple
-        organizational roles and contributing to community-driven scientific outreach.</p>
+        <em>Applied Chemistry and Chemical Engineering (ACCE)</em> at the University of Rajshahi,
+        Bangladesh, maintaining a CGPA of <strong>3.65 out of 4.00</strong>.</p>
+
+      <p>My primary research interests encompass <strong>renewable energy materials</strong>
+        (Dye-Sensitized Solar Cells and Perovskite Solar Cells), <strong>computational chemistry</strong>
+        (Density Functional Theory), <strong>electrochemistry and corrosion science</strong>,
+        <strong>battery and energy storage systems</strong>, and <strong>nanomaterials</strong>
+        for catalysis and energy applications. I am proficient in simulation tools including
+        Gaussian, GaussView, Material Studio, CAPS1D, MATLAB, and OriginPro.</p>
+
+      <p>I have served in several leadership and organizational roles throughout my academic career,
+        including as <strong>President of USASS</strong>, Vice President and IT &amp; Media Secretary
+        of RUHERF, and in executive capacities across multiple student associations. These experiences
+        have strengthened my ability to lead, communicate, and collaborate in team environments.</p>
+
+      <p>My long-term professional goal is to contribute to sustainable energy solutions through
+        advanced research and academia. To pursue this, I am actively seeking a
+        <strong>fully-funded Master's or PhD program abroad</strong>, where I can work alongside
+        leading researchers in energy materials and computational chemistry. As a student from
+        a developing country with limited financial resources, a <em>full scholarship</em> is
+        essential for me to access world-class research infrastructure and realize my academic potential.</p>
+
+      <p>I am driven by the conviction that science must serve society — and I am committed to
+        building a research career that addresses pressing global challenges in clean energy and
+        materials innovation.</p>
     </div>
     <div class="cgpa-bar">
       <div class="cgpa-label">Academic Performance (CGPA) <span>3.65 / 4.00</span></div>
@@ -843,6 +961,133 @@ footer {
   </p>
 </section>
 
+<!-- ── PHOTO GALLERY ── -->
+<section id="gallery">
+  <div class="reveal">
+    <div class="section-label">Moments & Memories</div>
+    <h2 class="section-title">Photo <em>Gallery</em></h2>
+  </div>
+
+  <div class="gallery-grid reveal-stagger">
+
+    <!--
+    ═══════════════════════════════════════════════════════
+    HOW TO ADD PHOTOS:
+    1. Place your image file (jpg/png/webp) in the same
+       folder as this index.html
+    2. Copy one <div class="gallery-item"> block below
+    3. Replace:
+       · src="YOUR_IMAGE.jpg"  → your image filename
+       · data-event="..."      → event name (short, CAPS ok)
+       · data-desc="..."       → 1-2 sentence description
+       · The same text in .gallery-caption-event and
+         .gallery-caption-desc also needs to match
+    ═══════════════════════════════════════════════════════
+    -->
+
+    <!-- PHOTO 1 — Replace src and captions -->
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="photo1.jpg" alt="Event Photo"
+           onerror="this.src=''; this.parentElement.style.minHeight='200px'; this.style.display='none';">
+      <div class="gallery-caption">
+        <div class="gallery-caption-event"
+             data-event="Event / Program Name">Event / Program Name</div>
+        <div class="gallery-caption-desc"
+             data-desc="Describe the event briefly — what happened, where, and why this photo matters.">
+          Describe the event briefly — what happened, where, and why this photo matters.
+        </div>
+      </div>
+    </div>
+
+    <!-- PHOTO 2 -->
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="photo2.jpg" alt="Event Photo"
+           onerror="this.src=''; this.parentElement.style.minHeight='200px'; this.style.display='none';">
+      <div class="gallery-caption">
+        <div class="gallery-caption-event"
+             data-event="Event / Program Name">Event / Program Name</div>
+        <div class="gallery-caption-desc"
+             data-desc="Describe the event briefly — what happened, where, and why this photo matters.">
+          Describe the event briefly — what happened, where, and why this photo matters.
+        </div>
+      </div>
+    </div>
+
+    <!-- PHOTO 3 -->
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="photo3.jpg" alt="Event Photo"
+           onerror="this.src=''; this.parentElement.style.minHeight='200px'; this.style.display='none';">
+      <div class="gallery-caption">
+        <div class="gallery-caption-event"
+             data-event="Event / Program Name">Event / Program Name</div>
+        <div class="gallery-caption-desc"
+             data-desc="Describe the event briefly — what happened, where, and why this photo matters.">
+          Describe the event briefly — what happened, where, and why this photo matters.
+        </div>
+      </div>
+    </div>
+
+    <!-- PHOTO 4 — Add more by duplicating this block -->
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="photo4.jpg" alt="Event Photo"
+           onerror="this.src=''; this.parentElement.style.minHeight='200px'; this.style.display='none';">
+      <div class="gallery-caption">
+        <div class="gallery-caption-event"
+             data-event="Event / Program Name">Event / Program Name</div>
+        <div class="gallery-caption-desc"
+             data-desc="Describe the event briefly — what happened, where, and why this photo matters.">
+          Describe the event briefly — what happened, where, and why this photo matters.
+        </div>
+      </div>
+    </div>
+
+    <!-- PHOTO 5 -->
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="photo5.jpg" alt="Event Photo"
+           onerror="this.src=''; this.parentElement.style.minHeight='200px'; this.style.display='none';">
+      <div class="gallery-caption">
+        <div class="gallery-caption-event"
+             data-event="Event / Program Name">Event / Program Name</div>
+        <div class="gallery-caption-desc"
+             data-desc="Describe the event briefly — what happened, where, and why this photo matters.">
+          Describe the event briefly — what happened, where, and why this photo matters.
+        </div>
+      </div>
+    </div>
+
+    <!-- PHOTO 6 -->
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="photo6.jpg" alt="Event Photo"
+           onerror="this.src=''; this.parentElement.style.minHeight='200px'; this.style.display='none';">
+      <div class="gallery-caption">
+        <div class="gallery-caption-event"
+             data-event="Event / Program Name">Event / Program Name</div>
+        <div class="gallery-caption-desc"
+             data-desc="Describe the event briefly — what happened, where, and why this photo matters.">
+          Describe the event briefly — what happened, where, and why this photo matters.
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /.gallery-grid -->
+
+  <p style="font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--muted);margin-top:22px;letter-spacing:0.08em;">
+    📷 Click any photo to view it larger. Add more photos by duplicating a gallery-item block in the HTML.
+  </p>
+</section>
+
+<!-- Lightbox overlay -->
+<div class="gallery-lightbox" id="galleryLightbox" onclick="closeLightbox(event)">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <div class="lightbox-inner">
+    <img id="lbImg" src="" alt="">
+    <div class="lightbox-info">
+      <div class="lightbox-event" id="lbEvent"></div>
+      <div class="lightbox-desc" id="lbDesc"></div>
+    </div>
+  </div>
+</div>
+
 <!-- ── CONTACT ── -->
 <section id="contact">
   <div class="contact-intro reveal">
@@ -922,7 +1167,7 @@ document.querySelectorAll('a,button,label,.research-card,.exp-item,.pub-card,.sk
 
 // ── Nav scroll + active highlight ──
 const nav = document.getElementById('nav');
-const sections = ['about','research','experience','publications','certificates','contact'];
+const sections = ['about','research','experience','publications','certificates','gallery','contact'];
 window.addEventListener('scroll', ()=>{
   nav.classList.toggle('scrolled', window.scrollY > 80);
   const scrollY = window.scrollY + 120;
@@ -988,6 +1233,24 @@ async function handleSend(e){
     setTimeout(()=>{ btn.textContent='Send Message'; btn.style.background=''; btn.style.color=''; status.style.display='none'; },5000);
   }
 }
+
+// ── Gallery Lightbox ──
+function openLightbox(item){
+  const img   = item.querySelector('img');
+  const event = item.querySelector('.gallery-caption-event');
+  const desc  = item.querySelector('.gallery-caption-desc');
+  document.getElementById('lbImg').src   = img ? img.src : '';
+  document.getElementById('lbEvent').textContent = event ? event.dataset.event || event.textContent.trim() : '';
+  document.getElementById('lbDesc').textContent  = desc  ? desc.dataset.desc  || desc.textContent.trim()  : '';
+  document.getElementById('galleryLightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox(e){
+  if(e && e.target !== document.getElementById('galleryLightbox') && !e.target.classList.contains('lightbox-close')) return;
+  document.getElementById('galleryLightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e=>{ if(e.key==='Escape') { document.getElementById('galleryLightbox').classList.remove('open'); document.body.style.overflow=''; }});
 </script>
 </body>
 </html>
