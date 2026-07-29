@@ -454,8 +454,23 @@ section { padding:96px 60px; }
 .pub-title {
   font-family:'Cormorant Garamond',serif;
   font-size:21px; font-weight:600; color:var(--navy); margin-bottom:8px;
+  line-height:1.3;
 }
-.pub-note { font-size:14px; color:var(--muted); line-height:1.7; }
+.pub-authors {
+  font-size:13.5px; color:var(--navy); line-height:1.7; margin-bottom:8px;
+}
+.pub-authors strong { color:var(--teal); font-weight:600; }
+.pub-note { font-size:14px; color:var(--muted); line-height:1.7; margin-bottom:12px; }
+.pub-links { display:flex; flex-wrap:wrap; gap:10px; }
+.pub-link {
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px; letter-spacing:0.06em; text-transform:uppercase;
+  color:var(--teal); text-decoration:none;
+  border:1.5px solid var(--teal); border-radius:4px;
+  padding:6px 14px; display:inline-flex; align-items:center; gap:6px;
+  transition:all 0.25s ease;
+}
+.pub-link:hover { background:var(--teal); color:#fff; }
 
 /* ── CERTIFICATES ── */
 .cert-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
@@ -736,11 +751,11 @@ footer {
       <div class="hstat-label">CGPA / 4.00</div>
     </div>
     <div class="hstat">
-      <div class="hstat-num">0</div>
+      <div class="hstat-num">1</div>
       <div class="hstat-label">Research Papers</div>
     </div>
     <div class="hstat">
-      <div class="hstat-num">0</div>
+      <div class="hstat-num">4</div>
       <div class="hstat-label">Conference Papers</div>
     </div>
     <div class="hstat">
@@ -931,16 +946,59 @@ footer {
     <div class="section-label">Academic Output</div>
     <h2 class="section-title">Publications &amp; <em>Papers</em></h2>
   </div>
+
   <div class="reveal">
     <div class="pub-card">
-      <div class="pub-type">Research Articles</div>
-      <h3 class="pub-title">Peer-Reviewed Journal Papers</h3>
-      <p class="pub-note">Currently working on research manuscripts in computational chemistry and renewable energy. Publications will be listed here upon submission/acceptance. Stay tuned.</p>
+      <div class="pub-type">Journal Article</div>
+      <h3 class="pub-title">Computational study of the effects of substituent type and position on the O–H bond dissociation energy of phenolic compounds</h3>
+      <p class="pub-authors">Hossen, J., <strong>Babu, M. F.</strong>, Dey, T., Siam, S., Islam, M. M., Iqbal, M. M., Rabby, A. M., &amp; Rezvi, M. T. R. (2026).</p>
+      <p class="pub-note"><em>Discover Chemistry</em>, 3, 406.</p>
+      <div class="pub-links">
+        <a href="https://doi.org/10.1007/s44371-026-00856-6" class="pub-link" target="_blank"><i class="fas fa-link"></i> DOI</a>
+      </div>
     </div>
+  </div>
+
+  <div class="reveal">
     <div class="pub-card">
-      <div class="pub-type">Conference Proceedings</div>
-      <h3 class="pub-title">Conference Papers &amp; Presentations</h3>
-      <p class="pub-note">Preparing contributions for national and international conferences. Papers and poster presentations will be added as they are accepted.</p>
+      <div class="pub-type">Conference Presentation — Oral</div>
+      <h3 class="pub-title">Platinum-tetraphenyl Porphyrin Electrocatalyst for Anodic Chlorine Evolution Reaction: Computational DFT Study</h3>
+      <p class="pub-authors">Hossen, J., <strong>Babu, M. F.</strong>, Nakatani, N., Maruf, M. M. R., &amp; Islam, M. S. (2026, May 7–8).</p>
+      <p class="pub-note">International Conference on Electronics and Informatics 2026 (ICEI 2026), organized by Bangladesh Electronics and Informatics Society, Atomic Energy Centre, Dhaka, Bangladesh.</p>
+      <div class="pub-links">
+        <a href="https://www.researchgate.net/publication/410953886_Platinum-tetraphenyl_Porphyrin_Electrocatalyst_for_Anodic_Chlorine_Evolution_Reaction_Computational_DFT_Study" class="pub-link" target="_blank"><i class="fab fa-researchgate"></i> ResearchGate</a>
+      </div>
+    </div>
+
+    <div class="pub-card">
+      <div class="pub-type">Conference Presentation — Oral</div>
+      <h3 class="pub-title">Substituent Effects on O-H Bond Dissociation Energy in Phenolic Antioxidants: A DFT Approach</h3>
+      <p class="pub-authors">Hossen, J., Siam, S., <strong>Babu, M. F.</strong>, Dey, T., Islam, M. M., Iqbal, M. M., Rabby, A. M., &amp; Rezvi, M. T. R. (2026, May 7–8). Presented by S. Siam.</p>
+      <p class="pub-note">International Conference on Electronics and Informatics 2026 (ICEI 2026), organized by Bangladesh Electronics and Informatics Society, Atomic Energy Centre, Dhaka, Bangladesh.</p>
+      <div class="pub-links">
+        <a href="https://www.researchgate.net/publication/404721798_Substituent_Effects_on_O-H_Bond_Dissociation_Energy_in_Phenolic_Antioxidants_A_DFT_Approach" class="pub-link" target="_blank"><i class="fab fa-researchgate"></i> ResearchGate</a>
+      </div>
+    </div>
+
+    <div class="pub-card">
+      <div class="pub-type">Conference Presentation — Oral</div>
+      <h3 class="pub-title">Computational Investigation of Anodic Chlorine Evolution Reaction on Platinum-tetraphenyl Porphyrin Electrocatalyst</h3>
+      <p class="pub-authors">Hossen, J., Nakatani, N., <strong>Babu, M. F.</strong>, &amp; Maruf, M. M. R. (2026, April 4–5).</p>
+      <p class="pub-note">6th Young Scientist Congress (6th YSC), organized by Bangladesh Academy of Sciences, Dhaka, Bangladesh. Published in <em>Journal of Bangladesh Academy of Sciences</em> (2026), 50(Suppl. 1), 43.</p>
+      <div class="pub-links">
+        <a href="https://www.researchgate.net/publication/410954390_Computational_Investigation_of_Anodic_Chlorine_Evolution_Reaction_on_Platinum-tetraphenyl_Porphyrin_Electrocatalyst" class="pub-link" target="_blank"><i class="fab fa-researchgate"></i> ResearchGate</a>
+        <a href="https://bas.org.bd/storage/app/uploads/public/69d/059/2a1/69d0592a1ef95605755782.pdf" class="pub-link" target="_blank"><i class="fas fa-file-pdf"></i> Full Volume</a>
+      </div>
+    </div>
+
+    <div class="pub-card">
+      <div class="pub-type">Conference Presentation — Poster</div>
+      <h3 class="pub-title">Green Corrosion Inhibition of Steels Using Moringa oleifera Leaves Extract in Acidic Medium</h3>
+      <p class="pub-authors">Islam, M. S., Mia, J., <strong>Babu, M. F.</strong>, Siam, S., Islam, M. M., Dey, T., Tareq, M. J. H., Akter, S., Sarker, P. P., Shahriar, S. M. S., Islam, M. K., &amp; Salam, S. M. A. (2025, December 13).</p>
+      <p class="pub-note">1st International Conference on Environmental Sustainability &amp; Greener Earth (ICESGE 2025), organized by American Chemical Society (ACS) International Student Chapter, University of Dhaka, Asiatic Society of Bangladesh, Dhaka, Bangladesh.</p>
+      <div class="pub-links">
+        <a href="https://www.researchgate.net/publication/404722259_Green_Corrosion_Inhibition_of_Steels_Using_Moringa_oleifera_Leaves_extract_in_Acidic_Medium" class="pub-link" target="_blank"><i class="fab fa-researchgate"></i> ResearchGate</a>
+      </div>
     </div>
   </div>
 </section>
