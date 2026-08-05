@@ -18,8 +18,8 @@
   --teal:     #0d9e7e;
   --teal-lt:  #e0f5f0;
   --navy:     #1a3558;
-  --muted:    #6b82a0;
-  --text:     #2d3f55;
+  --muted:    #37495f;
+  --text:     #12212f;
   --shadow:   0 2px 20px rgba(26,53,88,0.10);
   --shadow2:  0 8px 40px rgba(26,53,88,0.13);
 }
@@ -32,21 +32,6 @@ body {
   font-family: 'Nunito Sans', sans-serif;
   font-weight: 400;
   overflow-x: hidden;
-  cursor: none;
-}
-
-/* ── Cursor ── */
-.cursor {
-  position:fixed; width:8px; height:8px;
-  background:var(--teal); border-radius:50%;
-  pointer-events:none; z-index:9999;
-  transition:transform 0.1s ease;
-}
-.cursor-ring {
-  position:fixed; width:30px; height:30px;
-  border:1.5px solid var(--teal); border-radius:50%;
-  pointer-events:none; z-index:9998;
-  transition:all 0.14s ease; opacity:0.45;
 }
 
 /* ── NAV ── */
@@ -76,13 +61,13 @@ nav.scrolled {
 .nav-links li a {
   font-family:'JetBrains Mono',monospace;
   font-size:10px; letter-spacing:0.10em; text-transform:uppercase;
-  color:rgba(255,255,255,0.65); text-decoration:none;
+  color:rgba(255,255,255,0.95); text-decoration:none;
   padding:5px 12px; border-radius:4px;
   transition:all 0.22s ease;
   display:flex; flex-direction:column; align-items:center; gap:2px;
   position:relative;
 }
-.nav-links li a .nn { font-size:7.5px; color:var(--teal); opacity:0.8; line-height:1; }
+.nav-links li a .nn { font-size:7.5px; color:var(--teal); opacity:0.9; line-height:1; }
 .nav-links li a::after {
   content:''; position:absolute; bottom:0; left:12px; right:12px;
   height:1.5px; background:var(--teal); border-radius:1px;
@@ -94,7 +79,7 @@ nav.scrolled {
 /* hamburger */
 .nav-toggle {
   display:none; flex-direction:column; gap:5px;
-  background:none; border:none; cursor:none; padding:4px;
+  background:none; border:none; cursor:pointer; padding:4px;
 }
 .nav-toggle span {
   display:block; width:22px; height:1.5px;
@@ -115,7 +100,7 @@ nav.scrolled {
 .mobile-menu a {
   font-family:'JetBrains Mono',monospace;
   font-size:11.5px; letter-spacing:0.12em; text-transform:uppercase;
-  color:rgba(255,255,255,0.65); text-decoration:none;
+  color:rgba(255,255,255,0.95); text-decoration:none;
   padding:13px 36px; border-bottom:1px solid rgba(255,255,255,0.08);
   display:flex; align-items:center; gap:14px;
   transition:color 0.22s, background 0.22s;
@@ -421,6 +406,8 @@ section { padding:96px 60px; }
   font-size:10px; letter-spacing:0.11em; text-transform:uppercase;
   color:var(--teal); margin-bottom:5px;
 }
+.exp-org a { color:inherit; text-decoration:none; border-bottom:1px dotted var(--teal); }
+.exp-org a:hover { color:var(--navy); border-bottom-color:var(--navy); }
 .exp-duration {
   font-family:'JetBrains Mono',monospace;
   font-size:9.5px; letter-spacing:0.08em;
@@ -430,6 +417,8 @@ section { padding:96px 60px; }
   margin-bottom:10px;
 }
 .exp-desc { font-size:14px; line-height:1.75; color:var(--muted); }
+.exp-roles-list { font-size:13.5px; line-height:1.85; color:var(--navy); margin-bottom:8px; }
+.exp-roles-list strong { color:var(--teal); }
 
 /* ── PUBLICATIONS ── */
 .pub-card {
@@ -591,6 +580,7 @@ section { padding:96px 60px; }
 .contact-link.linkedin:hover .contact-icon{ background:#0077b5; border-color:#0077b5; }
 .contact-link.rgate:hover .contact-icon   { background:#40ba21; border-color:#40ba21; }
 .contact-link.whatsapp:hover .contact-icon{ background:#25d366; border-color:#25d366; }
+.contact-link.orcid:hover .contact-icon   { background:#A6CE39; border-color:#A6CE39; }
 
 .contact-text {
   font-family:'JetBrains Mono',monospace;
@@ -621,7 +611,7 @@ section { padding:96px 60px; }
   color:var(--teal); padding:12px 28px; border-radius:6px;
   font-family:'JetBrains Mono',monospace;
   font-size:10.5px; letter-spacing:0.12em; text-transform:uppercase;
-  cursor:none; transition:all 0.28s; align-self:flex-start;
+  cursor:pointer; transition:all 0.28s; align-self:flex-start;
 }
 .btn-send:hover { background:var(--teal); color:white; box-shadow:0 3px 16px rgba(13,158,126,0.3); }
 
@@ -633,12 +623,12 @@ footer {
 }
 .footer-copy {
   font-family:'JetBrains Mono',monospace;
-  font-size:10px; letter-spacing:0.1em; color:rgba(255,255,255,0.45);
+  font-size:10px; letter-spacing:0.1em; color:rgba(255,255,255,0.85);
 }
 .footer-top {
   font-family:'JetBrains Mono',monospace;
   font-size:10px; letter-spacing:0.12em; text-transform:uppercase;
-  color:rgba(255,255,255,0.45); text-decoration:none; transition:color 0.25s;
+  color:rgba(255,255,255,0.85); text-decoration:none; transition:color 0.25s;
 }
 .footer-top:hover { color:var(--teal); }
 
@@ -681,16 +671,13 @@ footer {
 </head>
 <body>
 
-<div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursorRing"></div>
-
 <!-- ── NAV ── -->
 <nav id="nav">
   <a href="#hero" class="nav-logo">Forhad<span>.</span></a>
   <ul class="nav-links">
     <li><a href="#about"        data-section="about"        ><span class="nn">01</span>About</a></li>
     <li><a href="#research"     data-section="research"     ><span class="nn">02</span>Research</a></li>
-    <li><a href="#experience"   data-section="experience"   ><span class="nn">03</span>Experience</a></li>
+    <li><a href="#experience"   data-section="experience"   ><span class="nn">03</span>Leadership</a></li>
     <li><a href="#publications" data-section="publications" ><span class="nn">04</span>Publications</a></li>
     <li><a href="#certificates" data-section="certificates" ><span class="nn">05</span>Certificates</a></li>
     <li><a href="#gallery"      data-section="gallery"      ><span class="nn">06</span>Gallery</a></li>
@@ -704,7 +691,7 @@ footer {
 <div class="mobile-menu" id="mobileMenu">
   <a href="#about"        onclick="closeMenu()"><span class="mn">01</span> About</a>
   <a href="#research"     onclick="closeMenu()"><span class="mn">02</span> Research</a>
-  <a href="#experience"   onclick="closeMenu()"><span class="mn">03</span> Experience</a>
+  <a href="#experience"   onclick="closeMenu()"><span class="mn">03</span> Leadership</a>
   <a href="#publications" onclick="closeMenu()"><span class="mn">04</span> Publications</a>
   <a href="#certificates" onclick="closeMenu()"><span class="mn">05</span> Certificates</a>
   <a href="#gallery"      onclick="closeMenu()"><span class="mn">06</span> Gallery</a>
@@ -738,7 +725,7 @@ footer {
         University of Rajshahi, Rajshahi-6205, Bangladesh
       </p>
       <div class="hero-cta">
-        <a href="cv.pdf" class="btn-primary" target="_blank">Download CV</a>
+        <a href="Forhad_Babu_CV_copy.pdf" class="btn-primary" download="Forhad_Babu_CV_copy.pdf">Download CV</a>
         <a href="#contact" class="btn-ghost">Get in Touch</a>
       </div>
     </div>
@@ -880,61 +867,80 @@ footer {
   </div>
 </section>
 
-<!-- ── EXPERIENCE ── -->
+<!-- ── LEADERSHIP & EXTRA CURRICULAR ACTIVITIES ── -->
 <section id="experience">
   <div class="reveal">
     <div class="section-label">Roles &amp; Activities</div>
-    <h2 class="section-title">Experience &amp; <em>Leadership</em></h2>
+    <h2 class="section-title">Leadership &amp; <em>Extra Curricular Activities</em></h2>
   </div>
   <div class="exp-timeline">
 
     <div class="exp-item">
       <div class="exp-role">President</div>
+      <div class="exp-org">Rajshahi University Higher Education and Research Forum (RUHERF) — <a href="https://www.linkedin.com/company/ruherf/" target="_blank">LinkedIn</a></div>
+      <div class="exp-duration">📅 March 2025 — Present</div>
+      <div class="exp-roles-list">
+        <strong>President</strong>, July 2026 – Present<br>
+        <strong>Vice President</strong>, Nov 2025 – July 2026<br>
+        <strong>IT Secretary</strong>, March 2025 – Nov 2025
+      </div>
+      <p class="exp-desc">Spearheaded university-wide research and higher education programs, fostering academic growth.</p>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-role">President</div>
       <div class="exp-org">University Students Association of Sariakandi Sonatola (USASS)</div>
-      <div class="exp-duration">📅 [Start Date] — Running</div>
-      <p class="exp-desc">Currently serving as President, providing strategic leadership and guiding organizational activities to support students from Sariakandi and Sonatola regions at the university level.</p>
+      <div class="exp-duration">📅 March 2026 — Present</div>
+      <p class="exp-desc">Coordinated initiatives advancing university students' academic, professional, and community development.</p>
     </div>
 
     <div class="exp-item">
-      <div class="exp-role">Vice President</div>
-      <div class="exp-org">RUHERF — Rajshahi University</div>
-      <div class="exp-duration">📅 [Start Date] — [End Date]</div>
-      <p class="exp-desc">Led strategic direction and operations of the organization, coordinating with faculty, managing events, and driving research-awareness initiatives across campus.</p>
-    </div>
-
-    <div class="exp-item">
-      <div class="exp-role">IT &amp; Media Secretary</div>
-      <div class="exp-org">RUHERF — Rajshahi University</div>
-      <div class="exp-duration">📅 [Start Date] — [End Date]</div>
-      <p class="exp-desc">Managed digital communications, social media outreach, event media coverage, and technical infrastructure to amplify the organization's research mission.</p>
+      <div class="exp-role">National Green Warrior Ambassador</div>
+      <div class="exp-org">Shishu Ullash Organisation International Global Youth Platform — <a href="https://www.linkedin.com/company/shishu-ullash/" target="_blank">LinkedIn</a></div>
+      <div class="exp-duration">📅 December 2025 — Present</div>
+      <p class="exp-desc">Promoted environmental awareness and youth engagement through sustainability initiatives.</p>
     </div>
 
     <div class="exp-item">
       <div class="exp-role">Office Secretary</div>
       <div class="exp-org">Rajshahi University Students Association of Sariakandi (RUSAS)</div>
-      <div class="exp-duration">📅 [Start Date] — [End Date]</div>
-      <p class="exp-desc">Managed official correspondence, documentation, and administrative coordination for the association's activities and programs.</p>
+      <div class="exp-duration">📅 October 2023 — Present</div>
+      <p class="exp-desc">Managed official correspondence, documentation, and administrative coordination.</p>
     </div>
 
     <div class="exp-item">
       <div class="exp-role">IT Secretary</div>
       <div class="exp-org">Bogura Zilla Students Welfare Association</div>
-      <div class="exp-duration">📅 [Start Date] — [End Date]</div>
-      <p class="exp-desc">Handled digital presence, IT infrastructure, and media-related tasks to strengthen the association's communications and outreach.</p>
+      <div class="exp-duration">📅 May 2025 — April 2026</div>
+      <p class="exp-desc">Strengthened outreach through digital, IT, and media management.</p>
     </div>
 
     <div class="exp-item">
       <div class="exp-role">Treasurer</div>
-      <div class="exp-org">SWAJON</div>
-      <div class="exp-duration">📅 [Start Date] — [End Date]</div>
-      <p class="exp-desc">Oversaw financial planning, budget management, and transparent fund reporting for organizational activities and programs.</p>
+      <div class="exp-org">SWAJON, Shah Makhdum Hall, University of Rajshahi</div>
+      <div class="exp-duration">📅 October 2023 — Present</div>
+      <p class="exp-desc">Maintained financial transparency and promoted blood donation initiatives and awareness.</p>
     </div>
 
     <div class="exp-item">
       <div class="exp-role">Active Member</div>
-      <div class="exp-org">BD Clean</div>
-      <div class="exp-duration">📅 [Start Date] — [End Date]</div>
-      <p class="exp-desc">Participated in environmental cleanliness and sustainability drives, contributing to community outreach and eco-awareness campaigns.</p>
+      <div class="exp-org">BD Clean — <a href="https://bdclean.org/" target="_blank">Website</a></div>
+      <div class="exp-duration">📅 June 2024 — Present</div>
+      <p class="exp-desc">Participated in environmental cleanliness and sustainability drives, contributing to eco-awareness campaigns.</p>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-role">Inter Department Relationship Secretary (Ass)</div>
+      <div class="exp-org">ACCE Group — <a href="https://www.linkedin.com/company/acce-group-ru/" target="_blank">LinkedIn</a></div>
+      <div class="exp-duration">📅 September 2025 — Present</div>
+      <p class="exp-desc">Facilitated interdepartmental collaboration and coordinated communication with ACCE Group, Department of Applied Chemistry and Chemical Engineering.</p>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-role">Campus Ambassador</div>
+      <div class="exp-org">BioPc – A Bioinformatics Lab of Research and Training — <a href="https://www.linkedin.com/company/biopc-a-bioinformatics-lab-of-research-and-training/" target="_blank">LinkedIn</a></div>
+      <div class="exp-duration">📅 January 2026 — Present</div>
+      <p class="exp-desc">Promoted bioinformatics research and training opportunities through campus outreach.</p>
     </div>
 
   </div>
@@ -1166,6 +1172,10 @@ footer {
         <div class="contact-icon"><i class="fab fa-researchgate"></i></div>
         <span class="contact-text">ResearchGate Profile</span>
       </a>
+      <a href="https://orcid.org/0009-0003-9602-142X" class="contact-link orcid" target="_blank">
+        <div class="contact-icon"><i class="fab fa-orcid"></i></div>
+        <span class="contact-text">orcid.org/0009-0003-9602-142X</span>
+      </a>
       <a href="https://wa.me/8801701570907" class="contact-link whatsapp" target="_blank">
         <div class="contact-icon"><i class="fab fa-whatsapp"></i></div>
         <span class="contact-text">+880 1701 570907 (WhatsApp)</span>
@@ -1205,24 +1215,6 @@ footer {
 </footer>
 
 <script>
-// ── Cursor ──
-const cursor = document.getElementById('cursor');
-const ring   = document.getElementById('cursorRing');
-let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove', e=>{
-  mx=e.clientX; my=e.clientY;
-  cursor.style.left=mx-4+'px'; cursor.style.top=my-4+'px';
-});
-(function animRing(){
-  rx+=(mx-rx)*0.13; ry+=(my-ry)*0.13;
-  ring.style.left=rx-15+'px'; ring.style.top=ry-15+'px';
-  requestAnimationFrame(animRing);
-})();
-document.querySelectorAll('a,button,label,.research-card,.exp-item,.pub-card,.skill-tag,.cert-placeholder').forEach(el=>{
-  el.addEventListener('mouseenter',()=>{ cursor.style.transform='scale(2.5)'; ring.style.opacity='0.2'; ring.style.transform='scale(1.5)'; });
-  el.addEventListener('mouseleave',()=>{ cursor.style.transform='scale(1)'; ring.style.opacity='0.45'; ring.style.transform='scale(1)'; });
-});
-
 // ── Nav scroll + active highlight ──
 const nav = document.getElementById('nav');
 const sections = ['about','research','experience','publications','certificates','gallery','contact'];
